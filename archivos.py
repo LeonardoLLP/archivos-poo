@@ -7,10 +7,10 @@ data = pd.read_csv(filepath, sep=";")
 print(data.head())
 
 # Simple function to attain to conditions of the csv
-def to_float(string: str):
-    string.replace(",", ".")
-    string.replace("Nan", "0")
-    return float(string)
+def to_float(value):
+    str_value = str(value)
+    final_string = str_value.replace(",", ".").replace("Nan", "0")
+    return float(final_string)
 
 
 # Hemos considerado que la información que se pide a pasar a la lista es toda la que se halla en el csv,
@@ -28,14 +28,16 @@ def alumni_info(data: pd.DataFrame) -> list:
 
 my_alumni_info = alumni_info(data)
 
-
+#! NO FUNCIONA
 def add_final_mark(data: list) -> list:
     """Return the same data with final mark"""
     for row in data:
         row["NotaFinal"] = (to_float(row["Parcial1"]) + to_float(row["Parcial2"])) * 0.3 + to_float(row["OrdinarioPracticas"]) * 0.4
 
 
-
+#! NO FUNCIONA
 add_final_mark(my_alumni_info)
-row = my_alumni_info[0]
+
+for i in my_alumni_info:
+    print(i)
 
