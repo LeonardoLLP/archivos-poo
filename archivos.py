@@ -8,8 +8,14 @@ print(data.head())
 def alumni_info(data: pd.DataFrame):
     my_list = []
     for index in range(len(data.index)):
-        keys = data.iloc[index, :2].tolist()
-        values = data.iloc[index, 2:].tolist()
-        my_dict = {"{}, {}".format(keys[0], keys[1]): values}
+        values = data.iloc[index]
+        my_dict = dict(zip(data.columns, values))
         my_list.append(my_dict)
+
+    # my_list.sort()
+
     return my_list
+
+ups = alumni_info(data)
+for i in ups:
+    print(i)
