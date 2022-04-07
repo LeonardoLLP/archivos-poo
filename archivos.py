@@ -12,10 +12,10 @@ def alumni_info(data: pd.DataFrame):
         my_dict = dict(zip(data.columns, values))
         my_list.append(my_dict)
 
-    # my_list.sort()
+    my_list.sort(key= lambda x: x["Apellidos"])
 
     return my_list
 
-ups = alumni_info(data)
-for i in ups:
-    print(i)
+my_alumni_info = alumni_info(data)
+
+
