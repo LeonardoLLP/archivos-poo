@@ -1,7 +1,12 @@
 import pandas as pd
+from numpy import float64 as fl
 
 filepath = "calificaciones.csv"
-data = pd.read_csv(filepath, sep=";")
+data = pd.read_csv(filepath, sep=";", dtype={
+    "Parcial1": fl,
+    "Parcial2": fl,
+    "Parcial3": fl,
+})
 
 print(data.head())
 
