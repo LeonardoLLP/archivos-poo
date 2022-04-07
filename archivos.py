@@ -21,15 +21,11 @@ my_alumni_info = alumni_info(data)
 
 
 
-# def add_final_mark(data: list) -> list:
-#     """Return the same data with final mark"""
-#     for row in data:
-#         row["NotaFinal"] = (row["Parcial1"] + row["Parcial2"]) * 0.3 + row["OrdinarioPracticas"] * 0.4
+def add_final_mark(data: list) -> list:
+    """Return the same data with final mark"""
+    for row in data:
+        row["NotaFinal"] = (float(row["Parcial1"]) + float(row["Parcial2"])) * 0.3 + float(row["OrdinarioPracticas"]) * 0.4
 
-# add_final_mark(my_alumni_info)
+add_final_mark(my_alumni_info)
 row = my_alumni_info[0]
-
-print(row["Parcial1"] * 0.3)
-
-# print(row["Parcial1"] * 0.3)
 
