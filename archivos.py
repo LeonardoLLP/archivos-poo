@@ -66,3 +66,11 @@ def sep_by_cals(data: list) -> tuple:
 
 good_students, bad_students = sep_by_cals(my_alumni_info)
 
+print("Good students:")
+for i in good_students:
+    print(i)
+
+print()
+print("Bad students:")
+for i in bad_students:
+    print(i)
