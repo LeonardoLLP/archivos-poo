@@ -43,3 +43,10 @@ add_final_mark(my_alumni_info)
 
 for i in my_alumni_info:
     print(i)
+
+def sep_by_cals(data: list) -> tuple:
+    """Returns two dicts, first for passed students, second students who need to repeat"""
+    passed_students = []
+    suspended_students = []
+    for _dict in data:
+        pass
