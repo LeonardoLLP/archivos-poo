@@ -4,9 +4,9 @@ from numpy import float64 as fl
 filepath = "calificaciones.csv"
 cal_data = pd.read_csv(filepath, sep=";")
 
-print(cal_data.head())
+# print(cal_data.head())
 
-# Simple function to attain to conditions of the csv
+#* Simple function to attain to conditions of the csv
 def to_float(value):
     str_value = str(value)
     final_string = str_value.replace(",", ".").replace("nan", "0")
@@ -14,8 +14,8 @@ def to_float(value):
     return float(final_float)
 
 
-# Hemos considerado que la información que se pide a pasar a la lista es toda la que se halla en el csv,
-# no he comprendido bien si querían que se suprimiese alguna
+#* Hemos considerado que la información que se pide a pasar a la lista es toda la que se halla en el csv,
+#* no he comprendido bien si querían que se suprimiese alguna
 def alumni_info(data: pd.DataFrame) -> list:
     my_list = []
     for index in range(len(data.index)):
@@ -29,7 +29,7 @@ def alumni_info(data: pd.DataFrame) -> list:
 
 my_alumni_info = alumni_info(cal_data)
 
-# Cambia lista original añadiendo notas finales: NO DEVUELVE NADA
+#* Cambia lista original añadiendo notas finales: NO DEVUELVE NADA
 def add_final_mark(data: list) -> None:
     """Return the same data with final mark"""
     for row in data:
@@ -41,12 +41,32 @@ def add_final_mark(data: list) -> None:
 
 add_final_mark(my_alumni_info)
 
-for i in my_alumni_info:
-    print(i)
+# for i in my_alumni_info:
+#     print(i)
+a = my_alumni_info
+
+def per_to_float(value):
+    nums = "0123456789"
+    final_num = ""
+    for char in value:
+        if char in nums:
+            final_num += char
+    return float(final_num) / 100
+
+
 
 def sep_by_cals(data: list) -> tuple:
     """Returns two dicts, first for passed students, second students who need to repeat"""
     passed_students = []
     suspended_students = []
     for _dict in data:
-        pass
+        asist = per_to_float(_dict["Asistencia"]) >= 0.75
+        p1 = to_float(_dict["Parcial1"]) >= 4
+        p2 = to_float(_dict["Parcial2"]) >= 4
+        pract = to_float(_dict["OrdinarioPracticas"]) >= 4
+        final = _dict["NotaFinal"] >= 5
+
+        if (asist and p1 and p2 and pract and final):
+            passed_students.append(_dict)
+        else:
+            suspended_students.append(_dict)
