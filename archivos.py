@@ -29,21 +29,13 @@ def alumni_info(data: pd.DataFrame) -> list:
 
 my_alumni_info = alumni_info(cal_data)
 
-#! YA FUNCIONA
-def add_final_mark(data: list):
+# Cambia lista original añadiendo notas finales: NO DEVUELVE NADA
+def add_final_mark(data: list) -> None:
     """Return the same data with final mark"""
     for row in data:
         n1 = (to_float(row["Parcial1"]) + to_float(row["Parcial2"])) * 0.3
         n2 = to_float(row["OrdinarioPracticas"]) * 0.4
         row["NotaFinal"] = n1 + n2
-
-a = my_alumni_info
-tf = to_float
-
-n1 = (tf(a[0]["Parcial1"]) + tf(a[0]["Parcial2"])) * 0.3
-n2 = tf(a[0]["OrdinarioPracticas"]) * 0.4
-
-print(n1 + n2)
 
 
 
@@ -51,4 +43,3 @@ add_final_mark(my_alumni_info)
 
 for i in my_alumni_info:
     print(i)
-
