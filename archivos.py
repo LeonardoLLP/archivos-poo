@@ -7,9 +7,10 @@ cal_data = pd.read_csv(filepath, sep=";")
 # print(cal_data.head())
 
 #* Simple function to attain to conditions of the csv
+#* Hemos implementado también para convertir porcentajes a numeros
 def to_float(value):
     str_value = str(value)
-    final_string = str_value.replace(",", ".").replace("nan", "0")
+    final_string = str_value.replace(",", ".").replace("nan", "0").replace("%", "")
     final_float = float(final_string)
     return float(final_float)
 
@@ -45,14 +46,6 @@ add_final_mark(my_alumni_info)
 #     print(i)
 a = my_alumni_info
 
-def per_to_float(value):
-    nums = "0123456789"
-    final_num = ""
-    for char in value:
-        if char in nums:
-            final_num += char
-    return float(final_num) / 100
-
 
 
 def sep_by_cals(data: list) -> tuple:
@@ -60,7 +53,7 @@ def sep_by_cals(data: list) -> tuple:
     passed_students = []
     suspended_students = []
     for _dict in data:
-        asist = per_to_float(_dict["Asistencia"]) >= 0.75
+        asist = to_float(_dict["Asistencia"]) >= 75
         p1 = to_float(_dict["Parcial1"]) >= 4
         p2 = to_float(_dict["Parcial2"]) >= 4
         pract = to_float(_dict["OrdinarioPracticas"]) >= 4
@@ -70,3 +63,17 @@ def sep_by_cals(data: list) -> tuple:
             passed_students.append(_dict)
         else:
             suspended_students.append(_dict)
+
+
+    return passed_students, suspended_students
+
+
+good_students, bad_students = sep_by_cals(my_alumni_info)
+
+for i in good_students:
+    print(i)
+
+print("\n"*3)
+
+for i in bad_students:
+    print(i)
