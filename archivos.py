@@ -29,10 +29,10 @@ def alumni_info(data: pd.DataFrame) -> list:
 my_alumni_info = alumni_info(data)
 
 #! NO FUNCIONA
-def add_final_mark(data: list) -> list:
+def add_final_mark(data: list):
     """Return the same data with final mark"""
     for row in data:
-        row["NotaFinal"] = (to_float(row["Parcial1"]) + to_float(row["Parcial2"])) * 0.3 + to_float(row["OrdinarioPracticas"]) * 0.4
+        row["NotaFinal"] = (to_float(row["Parcial1"]) + to_float(row["Parcial2"])) * 0.3 + to_float(row["OrdinarioPracticas"]) * 0.4 #! REVISAR ESTO
 
 
 #! NO FUNCIONA
