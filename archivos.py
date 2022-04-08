@@ -9,9 +9,8 @@ print(cal_data.head())
 # Simple function to attain to conditions of the csv
 def to_float(value):
     str_value = str(value)
-    final_string = str_value.replace(",", ".").replace("Nan", "0")
+    final_string = str_value.replace(",", ".").replace("nan", "0")
     final_float = float(final_string)
-    print(type(final_float))
     return float(final_float)
 
 
@@ -31,19 +30,22 @@ def alumni_info(data: pd.DataFrame) -> list:
 my_alumni_info = alumni_info(cal_data)
 
 #! NO FUNCIONA
-def add_final_mark(data: list):
-    """Return the same data with final mark"""
-    for row in data:
-        row["NotaFinal"] = (to_float(row["Parcial1"]) + to_float(row["Parcial2"])) * 0.3 + to_float(row["OrdinarioPracticas"]) * 0.4 #! REVISAR ESTO
+# def add_final_mark(data: list):
+#     """Return the same data with final mark"""
+#     for row in data:
+#         row["NotaFinal"] = (to_float(row["Parcial1"]) + to_float(row["Parcial2"])) * 0.3 + to_float(row["OrdinarioPracticas"]) * 0.4 #! REVISAR ESTO
 
 a = my_alumni_info
 tf = to_float
 
-# print(tf(a["Parcial1"]) + tf(a["Parcial2"]))
+n1 = (tf(a[0]["Parcial1"]) + tf(a[0]["Parcial2"])) * 0.3 
+n2 = tf(a[0]["OrdinarioPracticas"]) * 0.4
+
+print(n1 + n2)
 
 
 #! NO FUNCIONA
-add_final_mark(my_alumni_info)
+# add_final_mark(my_alumni_info)
 
 # for i in my_alumni_info:
 #     print(i)
